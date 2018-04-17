@@ -40,6 +40,8 @@ SourceFiles
 #include "psiThermo.H"
 #include "twoPhaseMixture.H"
 
+#include "CavitationModels/MultiphaseCavitation.H"
+
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 namespace Foam
@@ -62,8 +64,8 @@ class twoPhaseCavitationMixture
         //- Thermo-package of phase 2
         autoPtr<rhoThermo> thermo2_;
 
-
-
+        //- Cavitation models
+        autoPtr<MultiphaseCavitation> cavModel_;
 
 public:
 

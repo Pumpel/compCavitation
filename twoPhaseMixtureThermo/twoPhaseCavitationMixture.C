@@ -66,6 +66,36 @@ Foam::twoPhaseCavitationMixture::twoPhaseCavitationMixture
     thermo2_->validate(phase2Name(), "e");
 
     correct();
+
+
+    // TODO Adapt this code for the two phase model
+    //Initializing the cavitation model
+//	forAllIter(PtrDictionary<phaseModel>, phases_, phasei)
+//	{
+//		if (phasei().name() == "water")
+//		{
+//			//Info << "phasei name: " << phasei().name() << "\n";
+//			const phaseModel& alpha1 = phasei();
+//			tmp<volScalarField> TMPrho1(phasei().thermo().rho());
+//			const volScalarField& rho1(TMPrho1());
+//
+//			forAllIter(PtrDictionary<phaseModel>, phases_, phasej)
+//			{
+//				if (phasej().name() == "vapor")
+//				{
+//					//Info << "phasej name: " << phasej().name() << "\n";
+//					const phaseModel& alpha2 = phasej();
+//					tmp<volScalarField> TMPrho2(phasej().thermo().rho());
+//					const volScalarField& rho2(TMPrho2());
+//
+//					cavitationModel_ = MultiphaseCavitation::New(U, 	phi,
+//																		rho1,
+//																		alpha1,
+//																		alpha2);
+//				}
+//			}
+//		}
+//	}
 }
 
 
