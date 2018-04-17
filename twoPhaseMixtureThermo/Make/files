@@ -6,4 +6,4 @@ CavitationModels/Kunz/Kunz.C
 
 twoPhaseCavitationMixture.C
 
-LIB = $(FOAM_LIBBIN)/libcompCavitation
+LIB = $(FOAM_LIBBIN)/libtwoPhaseCavitationMixture
