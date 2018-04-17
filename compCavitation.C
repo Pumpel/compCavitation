@@ -41,9 +41,9 @@ Description
 #include "rhoThermo.H"
 #include "interfaceProperties.H"
 #include "twoPhaseMixture.H"
-#include "twoPhaseMixtureThermo.H"
 #include "turbulentFluidThermoModel.H"
 #include "pimpleControl.H"
+#include "twoPhaseMixtureThermo/twoPhaseCavitationMixture.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
