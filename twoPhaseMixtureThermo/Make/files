@@ -1,9 +1,9 @@
-multiphaseCavitationModels/MultiphaseCavitation.C
-multiphaseCavitationModels/newMultiphaseCavitation.C
+CavitationModels/MultiphaseCavitation.C
+CavitationModels/newMultiphaseCavitation.C
 
-multiphaseCavitationModels/SchnerrSauer.C
-multiphaseCavitationModels/Kunz.C
+CavitationModels/SchnerrSauer/SchnerrSauer.C
+CavitationModels/Kunz/Kunz.C
 
-twoPhaseMixtureThermo.C
+twoPhaseCavitationMixture.C
 
 LIB = $(FOAM_LIBBIN)/libcompCavitation

@@ -22,19 +22,19 @@ License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
 Class
-    Foam::twoPhaseMixtureThermo
+    Foam::twoPhaseCavitationMixture
 
 Description
 
 SourceFiles
-    twoPhaseMixtureThermoI.H
-    twoPhaseMixtureThermo.C
-    twoPhaseMixtureThermoIO.C
+    twoPhaseCavitationMixtureI.H
+    twoPhaseCavitationMixture.C
+    twoPhaseCavitationMixtureIO.C
 
 \*---------------------------------------------------------------------------*/
 
-#ifndef twoPhaseMixtureThermo_H
-#define twoPhaseMixtureThermo_H
+#ifndef twoPhaseCavitationMixture_H
+#define twoPhaseCavitationMixture_H
 
 #include "rhoThermo.H"
 #include "psiThermo.H"
@@ -46,10 +46,10 @@ namespace Foam
 {
 
 /*---------------------------------------------------------------------------*\
-                         Class twoPhaseMixtureThermo Declaration
+                         Class twoPhaseCavitationMixture Declaration
 \*---------------------------------------------------------------------------*/
 
-class twoPhaseMixtureThermo
+class twoPhaseCavitationMixture
 :
     public psiThermo,
     public twoPhaseMixture
@@ -63,23 +63,25 @@ class twoPhaseMixtureThermo
         autoPtr<rhoThermo> thermo2_;
 
 
+
+
 public:
 
     //- Runtime type information
-    TypeName("twoPhaseMixtureThermo");
+    TypeName("twoPhaseCavitationMixture");
 
 
     // Constructors
 
         //- Construct from mesh
-        twoPhaseMixtureThermo
+        twoPhaseCavitationMixture
         (
             const fvMesh& mesh
         );
 
 
     //- Destructor
-    virtual ~twoPhaseMixtureThermo();
+    virtual ~twoPhaseCavitationMixture();
 
 
     // Member Functions

@@ -22,26 +22,32 @@ License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
 Class
-    Foam::phaseChangeTwoPhaseMixtures::SchnerrSauer
+    Foam::MultiphaseCavitations::Kunz
 
 Description
-    SchnerrSauer cavitation model.
+    Kunz cavitation model slightly modified so that the condensation term
+    is switched off when the pressure is less than the saturation vapour
+    pressure.  This change allows the condensation term to be formulated as
+    a coefficient multiplying (p - p_sat) so that it can be included as an
+    implicit term in the pressure equation.
 
     Reference:
     \verbatim
-        Schnerr, G. H., And Sauer, J.,
-        "Physical and Numerical Modeling of Unsteady Cavitation Dynamics",
-        Proc. 4th International Conference on Multiphase Flow,
-        New Orleans, U.S.A., 2001.
+        Kunz, R.F., Boger, D.A., Stinebring, D.R., Chyczewski, Lindau. J.W.,
+        Gibeling, H.J., Venkateswaran, S., Govindan, T.R.,
+        "A Preconditioned Implicit Method for Two-Phase Flows with Application
+         to Cavitation Prediction,"
+        Computers and Fluids,
+        29(8):849-875, 2000.
     \endverbatim
 
 SourceFiles
-    SchnerrSauer.C
+    Kunz.C
 
 \*--------------------------------------------------------------------*/
 
-#ifndef SchnerrSauer_H
-#define SchnerrSauer_H
+#ifndef Kunz_H
+#define Kunz_H
 
 #include "MultiphaseCavitation.H"
 
@@ -53,62 +59,45 @@ namespace MultiphaseCavitations
 {
 
 /*--------------------------------------------------------------------*\
-                              Class SchnerrSauer
+                              Class Kunz
 \*--------------------------------------------------------------------*/
 
-class SchnerrSauer
+class Kunz
 :
-     public MultiphaseCavitation
+public MultiphaseCavitation
 {
     // Private data
 
-        //- Bubble number density
-        dimensionedScalar n_;
-
-
-        //- Nucleation site diameter
-        dimensionedScalar dNuc_;
-
-        //- Condensation rate coefficient
+        dimensionedScalar UInf_;
+        dimensionedScalar tInf_;
         dimensionedScalar Cc_;
-
-        //- Vapourisation rate coefficient
         dimensionedScalar Cv_;
 
         dimensionedScalar p0_;
-
-        //- Nucleation site volume-fraction
-        dimensionedScalar alphaNuc() const;
-
-        //- Reciprocal bubble radius
-        tmp<volScalarField>rRb(const volScalarField& limitedAlpha1) const;
-
-        //- Part of the condensation and vapourisation rates
-        tmp<volScalarField> pCoeff(const volScalarField& p) const;
 
 
 public:
 
     //- Runtime type information
-    TypeName("SchnerrSauer");
+    TypeName("Kunz");
 
 
     // Constructors
 
         //- Construct from components
-        SchnerrSauer
+        Kunz
         (
-            const volVectorField& U,
-            const surfaceScalarField& phi,
-			const volScalarField& rho1,
-			const volScalarField& rho2,
-			const phaseModel& alpha1,
-			const phaseModel& alpha2
+                const volVectorField& U,
+                const surfaceScalarField& phi,
+    			const volScalarField& rho1,
+    			const volScalarField& rho2,
+    			const volScalarField& alpha1,
+    			const volScalarField& alpha2
         );
 
 
     //- Destructor
-    virtual ~SchnerrSauer()
+    virtual ~Kunz()
     {}
 
 
@@ -117,17 +106,13 @@ public:
         //- Return the mass condensation and vaporisation rates as a
         //  coefficient to multiply (1 - alphal) for the condensation rate
         //  and a coefficient to multiply  alphal for the vaporisation rate
-    	//- Pair[0]: production term
-    	//  Pair[1}: destruction term
         virtual Pair<tmp<volScalarField>> mDotAlphaW() const;
 
         //- Return the mass condensation and vaporisation rates as coefficients
         //  to multiply (p - pSat)
-        //- Pair[0]: production term
-        //  Pair[1]: destruction term
         virtual Pair<tmp<volScalarField>> mDotP() const;
 
-        //- Correct the SchnerrSauer phaseChange model
+        //- Correct the Kunz phaseChange model
         virtual void correct();
 
         //- Read the transportProperties dictionary and update
@@ -137,7 +122,7 @@ public:
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-} // End namespace phaseChangeTwoPhaseMixtures
+} // End namespace MultiphaseCavitations
 } // End namespace Foam
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

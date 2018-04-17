@@ -23,7 +23,8 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "Kunz.H"
+#include "../../CavitationModels/Kunz/Kunz.H"
+
 #include "addToRunTimeSelectionTable.H"
 
 // * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //
@@ -46,8 +47,8 @@ Foam::MultiphaseCavitations::Kunz::Kunz
         const surfaceScalarField& phi,
 		const volScalarField& rho1,
 		const volScalarField& rho2,
-		const phaseModel& alpha1,
-		const phaseModel& alpha2
+		const volScalarField& alpha1,
+		const volScalarField& alpha2
 )
 :
 	MultiphaseCavitation(typeName, U, phi,

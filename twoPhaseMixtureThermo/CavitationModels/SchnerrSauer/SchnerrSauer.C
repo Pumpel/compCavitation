@@ -23,7 +23,8 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "SchnerrSauer.H"
+#include "../../CavitationModels/SchnerrSauer/SchnerrSauer.H"
+
 #include "mathematicalConstants.H"
 #include "addToRunTimeSelectionTable.H"
 
@@ -52,8 +53,8 @@ Foam::MultiphaseCavitations::SchnerrSauer::SchnerrSauer
     const surfaceScalarField& phi,
 	const volScalarField& rho1,
 	const volScalarField& rho2,
-	const phaseModel& alpha1,
-	const phaseModel& alpha2
+	const volScalarField& alpha1,
+	const volScalarField& alpha2
 )
 :
 	MultiphaseCavitation(typeName, U, phi,
